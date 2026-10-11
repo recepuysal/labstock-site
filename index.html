@@ -171,7 +171,7 @@
           <span lang="en">LabStock is a desktop inventory app for resistors, ICs and modules. Label your boxes with QR codes, pull part data from an LCSC link, and count parts on your desk with your phone camera.</span>
         </p>
         <div class="indir">
-          <a class="btn ana" href="https://github.com/recepuysal/labstock/releases/latest/download/LabStock-Kurulum.exe">
+          <a class="btn ana" data-indir="windows" href="https://github.com/recepuysal/labstock/releases/latest/download/LabStock-Kurulum.exe">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10 4.5v7H3zM11 4.3 21 3v8.5H11zM3 12.5h7v7L3 18.5zM11 12.5h10V21l-10-1.3z"/></svg>
             <span><span lang="tr">Windows için indir</span><span lang="en">Download for Windows</span></span>
           </a>
@@ -311,7 +311,7 @@
           <h3>Windows</h3>
           <p class="gereksinim">Windows 10 / 11 · 64-bit</p>
           <div class="indir">
-            <a class="btn ana" href="https://github.com/recepuysal/labstock/releases/latest/download/LabStock-Kurulum.exe">
+            <a class="btn ana" data-indir="windows" href="https://github.com/recepuysal/labstock/releases/latest/download/LabStock-Kurulum.exe">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg>
               <span>LabStock-Kurulum.exe</span>
             </a>
@@ -322,11 +322,11 @@
           <h3>Linux</h3>
           <p class="gereksinim">x86_64 · AppImage <span lang="tr">ya da</span><span lang="en">or</span> .deb (Ubuntu / Debian)</p>
           <div class="indir">
-            <a class="btn" href="https://github.com/recepuysal/labstock/releases/latest/download/LabStock-Linux-x86_64.AppImage">
+            <a class="btn" data-indir="appimage" href="https://github.com/recepuysal/labstock/releases/latest/download/LabStock-Linux-x86_64.AppImage">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg>
               <span>AppImage</span>
             </a>
-            <a class="btn" href="https://github.com/recepuysal/labstock/releases/latest/download/LabStock-Linux-amd64.deb">
+            <a class="btn" data-indir="deb" href="https://github.com/recepuysal/labstock/releases/latest/download/LabStock-Linux-amd64.deb">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg>
               <span>.deb</span>
             </a>
@@ -418,6 +418,25 @@
         var dil = b.getAttribute('data-dil-sec');
         try { localStorage.setItem('labstock-dil', dil); } catch (e) {}
         dilAyarla(dil);
+      });
+    });
+  })();
+
+  // İndirme sayacı: sadece hangi butona tıklandığı (windows/appimage/deb) günlük toplam olarak sayılır.
+  // Kimlik, çerez ya da kişisel bilgi yok. Yayınlanabilir (publishable) anahtar herkese açıktır.
+  (function () {
+    var URL_ = 'https://czgraotkmmpqhzdniijc.supabase.co/rest/v1/rpc/site_indirme';
+    var ANAHTAR = 'sb_publishable_GV5VIFC2oJs7gOwCPgr_4A_uaLfsE1e';
+    document.querySelectorAll('[data-indir]').forEach(function (a) {
+      a.addEventListener('click', function () {
+        try {
+          fetch(URL_, {
+            method: 'POST',
+            keepalive: true,
+            headers: { apikey: ANAHTAR, Authorization: 'Bearer ' + ANAHTAR, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ p_tur: a.getAttribute('data-indir') })
+          }).catch(function () {});
+        } catch (e) {}
       });
     });
   })();
