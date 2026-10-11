@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="tr" data-dil="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LabStock — elektronik parça stoğu takibi</title>
+<meta name="description" content="Elektronik komponentler için ücretsiz stok programı: QR etiketli kutular, LCSC'den otomatik bilgi, telefon kamerasıyla parça sayma. Windows ve Linux.">
+<link rel="canonical" href="https://labstock.com.tr/">
+<link rel="icon" type="image/svg+xml" href="img/labstock-isaret.svg">
+<link rel="icon" type="image/png" href="img/isaret-256.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LabStock — elektronik parça stoğu takibi">
+<meta property="og:description" content="Ücretsiz komponent stok programı: QR etiket, LCSC'den otomatik bilgi, telefonla parça sayma. Windows & Linux.">
+<meta property="og:image" content="https://labstock.com.tr/img/og.jpg">
+<meta property="og:url" content="https://labstock.com.tr/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f2ede3; --surface: #fbf8f2; --surface-2: #f7f2e8;
+    --line: #e4dccb; --ink: #1f1b16; --ink-2: #4a4238; --muted: #837a6b;
+    --copper: #a3611f; --copper-dark: #7e4915; --copper-soft: rgba(163, 97, 31, .1);
+    --ok: #1e6b4f; --ok-bg: #e6f0ea;
+    --r: 10px;
+    --font: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-tema="acik"]) {
+      --bg: #17140f; --surface: #201c16; --surface-2: #241f18;
+      --line: rgba(242, 237, 227, .12); --ink: #f2ede3; --ink-2: #d8d0c2; --muted: #a99d8a;
+      --copper: #c98544; --copper-dark: #e0a467; --copper-soft: rgba(201, 133, 68, .14);
+      --ok: #7fd1a8; --ok-bg: rgba(127, 209, 168, .12);
+      color-scheme: dark;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 var(--font); -webkit-font-smoothing: antialiased; }
+  img, video { max-width: 100%; height: auto; display: block; }
+  a { color: var(--copper); }
+  .sar { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+  /* dil: yalnızca seçili dildeki metinler görünür */
+  html[data-dil="tr"] [lang="en"], html[data-dil="en"] [lang="tr"] { display: none !important; }
+
+  /* üst çubuk */
+  header { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  header .sar { display: flex; align-items: center; gap: 16px; height: 60px; }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); font-weight: 600; font-size: 18px; letter-spacing: -.3px; }
+  .logo img { width: 26px; height: 26px; }
+  .isaret-koyu { display: none; }
+  @media (prefers-color-scheme: dark) { .isaret-acik { display: none; } .isaret-koyu { display: block; } }
+  nav { margin-left: auto; display: flex; align-items: center; gap: 18px; font-size: 14.5px; }
+  nav a { color: var(--ink-2); text-decoration: none; }
+  nav a:hover { color: var(--copper); }
+  .dil { display: flex; border: 1px solid var(--line); border-radius: 7px; overflow: hidden; }
+  .dil button { font: 500 12px var(--mono); padding: 5px 9px; border: 0; background: transparent; color: var(--muted); cursor: pointer; }
+  .dil button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+  @media (max-width: 720px) { nav .menu { display: none; } }
+
+  /* düğmeler */
+  .btn { display: inline-flex; align-items: center; gap: 9px; padding: 12px 18px; border-radius: 9px; font: 600 15px var(--font); text-decoration: none; border: 1px solid var(--line); color: var(--ink); background: var(--surface); }
+  .btn:hover { border-color: var(--copper); }
+  .btn.ana { background: var(--copper); border-color: var(--copper); color: #fff; }
+  .btn.ana:hover { background: var(--copper-dark); border-color: var(--copper-dark); }
+  .btn svg { width: 18px; height: 18px; flex: none; }
+  .btn small { font: 400 12px var(--mono); opacity: .8; }
+
+  /* giriş */
+  .giris { padding: 64px 0 40px; }
+  .giris .sar { display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center; }
+  .rozet { display: inline-block; font: 500 12px var(--mono); color: var(--copper); background: var(--copper-soft); padding: 4px 10px; border-radius: 99px; margin-bottom: 16px; }
+  h1 { font-size: clamp(34px, 5vw, 52px); line-height: 1.08; letter-spacing: -1.5px; margin: 0 0 18px; }
+  h1 em { font-style: normal; color: var(--copper); }
+  .alt { font-size: 18px; color: var(--ink-2); margin: 0 0 28px; max-width: 34em; }
+  .indir { display: flex; flex-wrap: wrap; gap: 10px; }
+  .not { margin-top: 14px; font-size: 13px; color: var(--muted); }
+  .giris video { width: 100%; border-radius: 14px; border: 1px solid var(--line); background: var(--surface); box-shadow: 0 18px 50px -24px rgba(31, 27, 22, .35); }
+  @media (max-width: 880px) { .giris .sar { grid-template-columns: 1fr; } .giris { padding-top: 36px; } }
+
+  /* bölümler */
+  section { padding: 56px 0; }
+  .baslik { max-width: 640px; margin-bottom: 32px; }
+  .baslik .ust { font: 500 12px var(--mono); letter-spacing: 1.5px; text-transform: uppercase; color: var(--copper); }
+  h2 { font-size: clamp(26px, 3.4vw, 36px); letter-spacing: -.8px; line-height: 1.15; margin: 8px 0 12px; }
+  .baslik p { color: var(--ink-2); margin: 0; }
+
+  .ekran { border-radius: 12px; border: 1px solid var(--line); overflow: hidden; background: var(--surface); }
+  .ekran img { width: 100%; }
+
+  .ozellikler { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .kart { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 20px; }
+  .kart .ikon { width: 34px; height: 34px; border-radius: 8px; background: var(--copper-soft); color: var(--copper); display: grid; place-items: center; margin-bottom: 12px; }
+  .kart .ikon svg { width: 18px; height: 18px; }
+  .kart h3 { font-size: 16.5px; margin: 0 0 6px; letter-spacing: -.2px; }
+  .kart p { margin: 0; font-size: 14.5px; color: var(--ink-2); }
+  @media (max-width: 880px) { .ozellikler { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .ozellikler { grid-template-columns: 1fr; } }
+
+  .iki { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .iki.ters > :first-child { order: 2; }
+  @media (max-width: 880px) { .iki { grid-template-columns: 1fr; gap: 24px; } .iki.ters > :first-child { order: 0; } }
+  .adimlar { list-style: none; padding: 0; margin: 20px 0 0; counter-reset: a; }
+  .adimlar li { position: relative; padding-left: 40px; margin-bottom: 14px; color: var(--ink-2); }
+  .adimlar li::before { counter-increment: a; content: counter(a); position: absolute; left: 0; top: 1px; width: 26px; height: 26px; border-radius: 50%; background: var(--ink); color: var(--bg); font: 600 13px var(--mono); display: grid; place-items: center; }
+  .adimlar b { color: var(--ink); }
+
+  .bant { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+  /* indirme */
+  .platformlar { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 720px) { .platformlar { grid-template-columns: 1fr; } }
+  .platform h3 { margin: 0 0 4px; font-size: 19px; }
+  .platform .gereksinim { font-size: 13.5px; color: var(--muted); margin: 0 0 16px; }
+  .platform .indir { flex-direction: column; align-items: stretch; }
+  code { font: 13px var(--mono); background: var(--surface-2); border: 1px solid var(--line); padding: 2px 6px; border-radius: 5px; }
+  pre { font: 13px/1.55 var(--mono); background: var(--surface-2); border: 1px solid var(--line); padding: 12px 14px; border-radius: 8px; overflow-x: auto; margin: 14px 0 0; }
+
+  /* sss */
+  details { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 14px 18px; margin-bottom: 10px; }
+  summary { cursor: pointer; font-weight: 600; }
+  details p { margin: 10px 0 0; color: var(--ink-2); font-size: 15px; }
+
+  footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: 14px; }
+  footer .sar { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; }
+  footer a { color: var(--ink-2); }
+  footer .sag { margin-left: auto; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="sar">
+    <a class="logo" href="#">
+      <img class="isaret-acik" src="img/labstock-isaret.svg" alt="" width="26" height="26">
+      <img class="isaret-koyu" src="img/labstock-isaret-koyu.svg" alt="" width="26" height="26">
+      LabStock
+    </a>
+    <nav>
+      <a class="menu" href="#ozellikler"><span lang="tr">Özellikler</span><span lang="en">Features</span></a>
+      <a class="menu" href="#sayim"><span lang="tr">Telefonla sayım</span><span lang="en">Phone counting</span></a>
+      <a class="menu" href="#indir"><span lang="tr">İndir</span><span lang="en">Download</span></a>
+      <a class="menu" href="https://github.com/recepuysal/labstock">GitHub</a>
+      <div class="dil" role="group" aria-label="Dil / Language">
+        <button type="button" data-dil-sec="tr" aria-pressed="true">TR</button>
+        <button type="button" data-dil-sec="en" aria-pressed="false">EN</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="giris">
+    <div class="sar">
+      <div>
+        <span class="rozet"><span lang="tr">Ücretsiz · Windows ve Linux</span><span lang="en">Free · Windows & Linux</span></span>
+        <h1>
+          <span lang="tr">Elektronik parçaların <em>nerede, kaç tane</em> olduğunu bil.</span>
+          <span lang="en">Know <em>where</em> your parts are, and <em>how many</em> you have.</span>
+        </h1>
+        <p class="alt">
+          <span lang="tr">LabStock; direnç, entegre ve modüllerin için masaüstü stok programı. Kutuları QR etiketle, LCSC linkinden bilgileri çek, masadaki parçaları telefon kamerasıyla say.</span>
+          <span lang="en">LabStock is a desktop inventory app for resistors, ICs and modules. Label your boxes with QR codes, pull part data from an LCSC link, and count parts on your desk with your phone camera.</span>
+        </p>
+        <div class="indir">
+          <a class="btn ana" href="https://github.com/recepuysal/labstock/releases/latest/download/LabStock-Kurulum.exe">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10 4.5v7H3zM11 4.3 21 3v8.5H11zM3 12.5h7v7L3 18.5zM11 12.5h10V21l-10-1.3z"/></svg>
+            <span><span lang="tr">Windows için indir</span><span lang="en">Download for Windows</span></span>
+          </a>
+          <a class="btn" href="#indir">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg>
+            <span>Linux (AppImage / .deb)</span>
+          </a>
+        </div>
+        <p class="not">
+          <span lang="tr">Türkçe ve İngilizce arayüz · Uygulama içinden otomatik güncelleme</span>
+          <span lang="en">English and Turkish interface · Automatic in-app updates</span>
+        </p>
+      </div>
+      <video data-dil-video autoplay muted loop playsinline preload="metadata"
+             poster="img/sayim-demo-poster.webp"
+             data-tr="img/sayim-demo.mp4" data-en="img/sayim-demo-en.mp4"
+             data-poster-tr="img/sayim-demo-poster.webp" data-poster-en="img/sayim-demo-en-poster.webp">
+        <source src="img/sayim-demo.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  <section>
+    <div class="sar">
+      <div class="ekran">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" data-dil-srcset data-tr="img/hero-koyu.webp" data-en="img/hero-koyu-en.webp" srcset="img/hero-koyu.webp">
+          <img data-dil-src data-tr="img/hero.webp" data-en="img/hero-en.webp" src="img/hero.webp" width="1600" height="1000" loading="lazy"
+               alt="LabStock envanter ekranı">
+        </picture>
+      </div>
+    </div>
+  </section>
+
+  <section id="ozellikler">
+    <div class="sar">
+      <div class="baslik">
+        <div class="ust"><span lang="tr">Özellikler</span><span lang="en">Features</span></div>
+        <h2><span lang="tr">Tezgâhtaki dağınıklık için yazıldı</span><span lang="en">Built for a messy workbench</span></h2>
+        <p><span lang="tr">Kendi ihtiyacım için yazdım, her gün kullanıyorum. İşe yarayan kısımlar şunlar:</span><span lang="en">I wrote it for my own bench and use it every day. These are the parts that matter:</span></p>
+      </div>
+      <div class="ozellikler">
+        <div class="kart">
+          <div class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 17h4v4"/></svg></div>
+          <h3><span lang="tr">Konumlar ve QR etiket</span><span lang="en">Locations & QR labels</span></h3>
+          <p><span lang="tr">Kutu, çekmece, raf. Her konuma etiket bas; okutunca içindekiler açılır.</span><span lang="en">Boxes, drawers, shelves. Print a label for each; scan it to see what's inside.</span></p>
+        </div>
+        <div class="kart">
+          <div class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></div>
+          <h3><span lang="tr">Linkten otomatik bilgi</span><span lang="en">Auto-fill from a link</span></h3>
+          <p><span lang="tr">LCSC kodunu ya da linkini yapıştır: üretici, kılıf, açıklama, datasheet ve görsel gelir.</span><span lang="en">Paste an LCSC code or link: manufacturer, package, description, datasheet and image are filled in.</span></p>
+        </div>
+        <div class="kart">
+          <div class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="2" width="10" height="20" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M11 18h2"/></svg></div>
+          <h3><span lang="tr">Telefonla sayım</span><span lang="en">Count with your phone</span></h3>
+          <p><span lang="tr">Parçaları masaya dök, telefonu tut; adet canlı sayılır, tek dokunuşla stoğa yazılır.</span><span lang="en">Pour parts on the desk and point your phone; they're counted live and saved with one tap.</span></p>
+        </div>
+        <div class="kart">
+          <div class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg></div>
+          <h3><span lang="tr">Alınacaklar listesi</span><span lang="en">To-buy list</span></h3>
+          <p><span lang="tr">Belirlediğin sınırın altına düşen parçalar listeye kendiliğinden girer.</span><span lang="en">Parts that drop below your minimum go to the list automatically.</span></p>
+        </div>
+        <div class="kart">
+          <div class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <h3><span lang="tr">İsteğe bağlı asistan</span><span lang="en">Optional assistant</span></h3>
+          <p><span lang="tr">"Elimde hangi 3.3V regülatörler var?" Groq, Gemini veya OpenRouter'ın ücretsiz anahtarlarıyla çalışır.</span><span lang="en">"Which 3.3 V regulators do I have?" Works with free Groq, Gemini or OpenRouter keys.</span></p>
+        </div>
+        <div class="kart">
+          <div class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div>
+          <h3><span lang="tr">Bulut ya da çevrimdışı</span><span lang="en">Cloud or offline</span></h3>
+          <p><span lang="tr">Varsayılan olarak hesabınla senkron. İstersen veriler yalnızca bilgisayarındaki dosyada kalır, hesap da gerekmez.</span><span lang="en">Synced to your account by default. Or keep everything in a local file on your computer, no account needed.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sayim" class="bant">
+    <div class="sar iki">
+      <div>
+        <div class="baslik" style="margin-bottom:0">
+          <div class="ust"><span lang="tr">Telefon kamerası</span><span lang="en">Phone camera</span></div>
+          <h2><span lang="tr">Uygulama kurmadan, telefonla say</span><span lang="en">Count with your phone, no app to install</span></h2>
+          <p><span lang="tr">Telefon, bilgisayardaki QR'ı okutunca aynı Wi-Fi üzerinden bağlanır. Görüntü bilgisayarda işlenir, internete çıkmaz.</span><span lang="en">Your phone connects over your Wi-Fi by scanning a QR code on the computer. Video is processed on your computer and never leaves your network.</span></p>
+        </div>
+        <ol class="adimlar">
+          <li><span lang="tr"><b>QR'ı okut</b>: telefonun tarayıcısında kamera sayfası açılır.</span><span lang="en"><b>Scan the QR</b>: a camera page opens in your phone's browser.</span></li>
+          <li><span lang="tr"><b>Sayım moduna geç</b>: parçalar canlı işaretlenir ve sayılır.</span><span lang="en"><b>Switch to Count</b>: parts are outlined and counted live.</span></li>
+          <li><span lang="tr"><b>Sabitle, parçayı seç</b>: QR etiketini göster ya da adını yaz.</span><span lang="en"><b>Lock and pick the part</b>: show its QR label or type its name.</span></li>
+          <li><span lang="tr"><b>LabStock'a yaz</b>: stok ve hareket geçmişi güncellenir.</span><span lang="en"><b>Save to LabStock</b>: stock and movement history are updated.</span></li>
+        </ol>
+      </div>
+      <div class="ekran">
+        <img src="img/telefon-eslesme.webp" width="1400" height="900" loading="lazy" alt="Telefon eşleştirme ekranı">
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sar iki ters">
+      <div>
+        <div class="baslik" style="margin-bottom:0">
+          <div class="ust">QR</div>
+          <h2><span lang="tr">Kutuya etiket, etikete içerik</span><span lang="en">A label on every box</span></h2>
+          <p><span lang="tr">Konumlar için QR etiket sayfası hazırla, yazdır, yapıştır. Telefonla okutunca o kutudaki parçalar ve adetleri açılır.</span><span lang="en">Print QR labels for your locations and stick them on. Scan one with your phone to see the parts and quantities inside.</span></p>
+        </div>
+      </div>
+      <div class="ekran">
+        <img data-dil-src data-tr="img/etiket-qr.webp" data-en="img/etiket-qr-en.webp" src="img/etiket-qr.webp" width="1600" height="1000" loading="lazy" alt="QR etiket baskı ekranı">
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sar iki">
+      <div>
+        <div class="baslik" style="margin-bottom:0">
+          <div class="ust"><span lang="tr">Parça detayı</span><span lang="en">Part details</span></div>
+          <h2><span lang="tr">Datasheet, parametreler, geçmiş</span><span lang="en">Datasheet, parameters, history</span></h2>
+          <p><span lang="tr">Her parçanın kılıfı, parametreleri, tedarikçi kodu ve son alış fiyatı tek sayfada. Her giriş ve çıkış hareket geçmişine işlenir.</span><span lang="en">Package, parameters, supplier code and last purchase price on one page. Every stock change is logged in the movement history.</span></p>
+        </div>
+      </div>
+      <div class="ekran">
+        <img data-dil-src data-tr="img/parca-detay.webp" data-en="img/parca-detay-en.webp" src="img/parca-detay.webp" width="1600" height="1000" loading="lazy" alt="Parça detay ekranı">
+      </div>
+    </div>
+  </section>
+
+  <section id="indir" class="bant">
+    <div class="sar">
+      <div class="baslik">
+        <div class="ust"><span lang="tr">İndir</span><span lang="en">Download</span></div>
+        <h2><span lang="tr">Ücretsiz, ticari kullanım dahil</span><span lang="en">Free, including commercial use</span></h2>
+        <p><span lang="tr">Kurulum dosyaları GitHub Releases'ten iner. Uygulama yeni sürümü kendisi bulur ve günceller.</span><span lang="en">Installers are downloaded from GitHub Releases. The app finds and installs new versions by itself.</span></p>
+      </div>
+      <div class="platformlar">
+        <div class="kart platform">
+          <h3>Windows</h3>
+          <p class="gereksinim">Windows 10 / 11 · 64-bit</p>
+          <div class="indir">
+            <a class="btn ana" href="https://github.com/recepuysal/labstock/releases/latest/download/LabStock-Kurulum.exe">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg>
+              <span>LabStock-Kurulum.exe</span>
+            </a>
+          </div>
+          <p class="not"><span lang="tr">Kurulum dosyası henüz imzalı olmadığı için SmartScreen uyarısı çıkabilir: <b>Ek bilgi → Yine de çalıştır</b>. Microsoft Store sürümü onay aşamasında.</span><span lang="en">The installer isn't code-signed yet, so SmartScreen may warn you: <b>More info → Run anyway</b>. A Microsoft Store version is in review.</span></p>
+        </div>
+        <div class="kart platform">
+          <h3>Linux</h3>
+          <p class="gereksinim">x86_64 · AppImage <span lang="tr">ya da</span><span lang="en">or</span> .deb (Ubuntu / Debian)</p>
+          <div class="indir">
+            <a class="btn" href="https://github.com/recepuysal/labstock/releases/latest/download/LabStock-Linux-x86_64.AppImage">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg>
+              <span>AppImage</span>
+            </a>
+            <a class="btn" href="https://github.com/recepuysal/labstock/releases/latest/download/LabStock-Linux-amd64.deb">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg>
+              <span>.deb</span>
+            </a>
+          </div>
+          <pre>sudo apt install ./LabStock-Linux-amd64.deb</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sar">
+      <div class="baslik">
+        <div class="ust"><span lang="tr">Sık sorulanlar</span><span lang="en">FAQ</span></div>
+        <h2><span lang="tr">Merak edilenler</span><span lang="en">Common questions</span></h2>
+      </div>
+      <details>
+        <summary><span lang="tr">Gerçekten ücretsiz mi?</span><span lang="en">Is it really free?</span></summary>
+        <p><span lang="tr">Evet, kişisel ve ticari kullanım dahil. Kaynak kodu GitHub'da görülebilir; açık kaynak lisansı değildir.</span><span lang="en">Yes, for personal and commercial use. The source code is visible on GitHub; it isn't under an open-source license.</span></p>
+      </details>
+      <details>
+        <summary><span lang="tr">Verilerim nerede duruyor?</span><span lang="en">Where is my data stored?</span></summary>
+        <p><span lang="tr">Varsayılan olarak hesabına bağlı olarak Supabase'de (bulut) tutulur, böylece birden fazla bilgisayarda aynı envanteri görürsün. Ayarlar'dan çevrimdışı moda geçersen veriler yalnızca bilgisayarındaki bir SQLite dosyasında kalır.</span><span lang="en">By default it's stored in the cloud (Supabase) under your account, so the same inventory works on several computers. Switch to offline mode in Settings and everything stays in a SQLite file on your computer.</span></p>
+      </details>
+      <details>
+        <summary><span lang="tr">Telefon kamerası için uygulama gerekiyor mu?</span><span lang="en">Do I need an app on my phone?</span></summary>
+        <p><span lang="tr">Hayır. Bilgisayardaki QR'ı okutunca telefonun tarayıcısında açılır. Telefon ve bilgisayar aynı Wi-Fi'da olmalı.</span><span lang="en">No. Scan the QR code on the computer and it opens in your phone's browser. Phone and computer need to be on the same Wi-Fi.</span></p>
+      </details>
+      <details>
+        <summary><span lang="tr">Yapay zekâ asistanı zorunlu mu?</span><span lang="en">Is the AI assistant required?</span></summary>
+        <p><span lang="tr">Hayır, tamamen isteğe bağlı. Kullanmak istersen kendi ücretsiz anahtarını Ayarlar'a girersin.</span><span lang="en">No, it's optional. If you want it, add your own free API key in Settings.</span></p>
+      </details>
+      <details>
+        <summary><span lang="tr">Hata buldum ya da önerim var</span><span lang="en">I found a bug or have an idea</span></summary>
+        <p><span lang="tr">GitHub'da <a href="https://github.com/recepuysal/labstock/issues">issue açabilirsin</a>; uygulamanın içindeki geri bildirim formu da bana ulaşır.</span><span lang="en">Please <a href="https://github.com/recepuysal/labstock/issues">open an issue on GitHub</a>; the feedback form inside the app reaches me too.</span></p>
+      </details>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="sar">
+    <span>© 2026 Recep Uysal · LabStock</span>
+    <a href="https://github.com/recepuysal/labstock">GitHub</a>
+    <a href="https://github.com/recepuysal/labstock/releases"><span lang="tr">Sürümler</span><span lang="en">Releases</span></a>
+    <a href="https://github.com/recepuysal/labstock/issues"><span lang="tr">Geri bildirim</span><span lang="en">Feedback</span></a>
+    <span class="sag"><span lang="tr">Türkiye'de geliştirildi</span><span lang="en">Made in Türkiye</span></span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var kok = document.documentElement;
+    function dilAyarla(dil) {
+      kok.setAttribute('data-dil', dil);
+      kok.setAttribute('lang', dil);
+      document.querySelectorAll('[data-dil-sec]').forEach(function (b) {
+        b.setAttribute('aria-pressed', String(b.getAttribute('data-dil-sec') === dil));
+      });
+      document.querySelectorAll('[data-dil-src]').forEach(function (img) {
+        var yeni = img.getAttribute('data-' + dil);
+        if (yeni && img.getAttribute('src') !== yeni) img.setAttribute('src', yeni);
+      });
+      document.querySelectorAll('[data-dil-srcset]').forEach(function (s) {
+        var yeni = s.getAttribute('data-' + dil);
+        if (yeni) s.setAttribute('srcset', yeni);
+      });
+      document.querySelectorAll('[data-dil-video]').forEach(function (v) {
+        var yeni = v.getAttribute('data-' + dil);
+        var kaynak = v.querySelector('source');
+        if (yeni && kaynak && kaynak.getAttribute('src') !== yeni) {
+          kaynak.setAttribute('src', yeni);
+          v.setAttribute('poster', v.getAttribute('data-poster-' + dil));
+          v.load();
+          var oynat = v.play();
+          if (oynat && oynat.catch) oynat.catch(function () {});
+        }
+      });
+      document.title = dil === 'en'
+        ? 'LabStock — inventory for electronic components'
+        : 'LabStock — elektronik parça stoğu takibi';
+    }
+    var kayitli = null;
+    try { kayitli = localStorage.getItem('labstock-dil'); } catch (e) {}
+    var tarayici = (navigator.language || 'tr').toLowerCase().indexOf('tr') === 0 ? 'tr' : 'en';
+    dilAyarla(kayitli === 'tr' || kayitli === 'en' ? kayitli : tarayici);
+    document.querySelectorAll('[data-dil-sec]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var dil = b.getAttribute('data-dil-sec');
+        try { localStorage.setItem('labstock-dil', dil); } catch (e) {}
+        dilAyarla(dil);
+      });
+    });
+  })();
+</script>
+</body>
+</html>
