@@ -67,6 +67,12 @@
   .dil button { font: 500 12px var(--mono); padding: 5px 9px; border: 0; background: transparent; color: var(--muted); cursor: pointer; }
   .dil button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
   @media (max-width: 720px) { nav .menu { display: none; } }
+  /* hesap: web sürümüne giriş / kayıt */
+  .hesap { display: inline-flex; align-items: center; padding: 7px 13px; border-radius: 8px; font: 600 14px var(--font); text-decoration: none; color: var(--ink); white-space: nowrap; }
+  .hesap:hover { background: var(--copper-soft); }
+  .hesap.uye { background: var(--copper); color: #fff; }
+  .hesap.uye:hover { background: var(--copper-dark); }
+  @media (max-width: 420px) { .hesap.giris-yap { display: none; } }
 
   /* düğmeler */
   .btn { display: inline-flex; align-items: center; gap: 9px; padding: 12px 18px; border-radius: 9px; font: 600 15px var(--font); text-decoration: none; border: 1px solid var(--line); color: var(--ink); background: var(--surface); }
@@ -232,6 +238,8 @@
       <a class="menu" href="#sayim"><span lang="tr">Telefonla sayım</span><span lang="en">Phone counting</span></a>
       <a class="menu" href="#indir"><span lang="tr">İndir</span><span lang="en">Download</span></a>
       <a class="menu" href="https://github.com/recepuysal/labstock">GitHub</a>
+      <a class="hesap giris-yap" href="https://app.labstock.com.tr/giris"><span lang="tr">Giriş yap</span><span lang="en">Sign in</span></a>
+      <a class="hesap uye" href="https://app.labstock.com.tr/kayit"><span lang="tr">Üye ol</span><span lang="en">Sign up</span></a>
       <div class="dil" role="group" aria-label="Dil / Language">
         <button type="button" data-dil-sec="tr" aria-pressed="true">TR</button>
         <button type="button" data-dil-sec="en" aria-pressed="false">EN</button>
