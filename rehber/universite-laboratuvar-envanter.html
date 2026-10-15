@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Üniversite ve okul elektronik laboratuvarı envanter takibi | LabStock</title>
+<meta name="description" content="Elektronik laboratuvarında sarf malzeme ve küçük ekipmanı resmi zimmet olmadan takip etme, konum düzeni, ekip paylaşımı ve dönem sonu sayım rehberi.">
+<link rel="canonical" href="https://labstock.com.tr/rehber/universite-laboratuvar-envanter.html">
+<link rel="icon" type="image/svg+xml" href="../img/labstock-isaret.svg">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Üniversite ve okul laboratuvarı için elektronik malzeme envanteri">
+<meta property="og:description" content="Elektronik laboratuvarında sarf malzeme ve küçük ekipmanı resmi zimmet olmadan takip etme, konum düzeni, ekip paylaşımı ve dönem sonu sayım rehberi.">
+<meta property="og:url" content="https://labstock.com.tr/rehber/universite-laboratuvar-envanter.html">
+<meta property="og:image" content="https://labstock.com.tr/img/og.jpg">
+<script data-goatcounter="https://rcpuysl.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Üniversite ve okul laboratuvarı için elektronik malzeme envanteri","description":"Elektronik laboratuvarında sarf malzeme ve küçük ekipmanı resmi zimmet olmadan takip etme, konum düzeni, ekip paylaşımı ve dönem sonu sayım rehberi.","inLanguage":"tr","author":{"@type":"Person","name":"Recep Uysal"},"publisher":{"@type":"Organization","name":"LabStock","url":"https://labstock.com.tr/"},"datePublished":"2026-10-15","mainEntityOfPage":"https://labstock.com.tr/rehber/universite-laboratuvar-envanter.html"}</script>
+<style>
+
+  :root { --bg:#f2ede3; --surface:#fbf8f2; --line:#e4dccb; --ink:#1f1b16; --ink-2:#4a4238; --muted:#837a6b; --copper:#a3611f; color-scheme: light; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#17140f; --surface:#201c16; --line:rgba(242,237,227,.12); --ink:#f2ede3; --ink-2:#d8d0c2; --muted:#a99d8a; --copper:#c98544; color-scheme: dark; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:17px/1.7 'Segoe UI', system-ui, sans-serif; }
+  a { color: var(--copper); }
+  .sar { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+  header { border-bottom:1px solid var(--line); }
+  header .sar { display:flex; align-items:center; justify-content:space-between; height:56px; }
+  .logo { font-weight:600; color:var(--ink); text-decoration:none; }
+  .uye { background:var(--copper); color:#fff; padding:7px 13px; border-radius:8px; text-decoration:none; font-weight:600; font-size:14px; }
+  h1 { font-size: clamp(26px, 5vw, 36px); line-height:1.25; margin: 36px 0 10px; }
+  h2 { font-size: 21px; margin: 30px 0 6px; }
+  p, li { color: var(--ink-2); }
+  .cta { margin: 36px 0; padding: 20px; background: var(--surface); border:1px solid var(--line); border-radius: 12px; }
+  .cta a.btn { display:inline-block; margin-top:8px; background:var(--copper); color:#fff; padding:10px 16px; border-radius:9px; text-decoration:none; font-weight:600; }
+  footer { border-top:1px solid var(--line); padding: 20px 0 40px; font-size: 14px; color: var(--muted); }
+  table { width:100%; border-collapse:collapse; margin:14px 0; font-size:15px; }
+  th, td { text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); color:var(--ink-2); vertical-align:top; }
+  th { color:var(--ink); }
+  .tw { overflow-x:auto; }
+</style>
+</head>
+<body>
+<header><div class="sar"><a class="logo" href="../">LabStock</a><a class="uye" href="https://app.labstock.com.tr/kayit">Üye ol</a></div></header>
+<main class="sar">
+<h1>Üniversite ve okul laboratuvarı için elektronik malzeme envanteri</h1>
+<p>Üniversite ya da okul laboratuvarında malzeme takibinin en büyük sorunu, parçaların "ortak" olmasıdır: herkes kullanır, kimse saymaz. Dönem sonunda elde kalanla kayıt birbirini tutmaz. Bu yazı, resmi bir zimmet sistemi kurmadan, basit ama düzenli bir envanter yapısı oluşturmak isteyenler için.</p>
+<h2>1. Laboratuvar envanterinin hedefi</h2>
+<p>Amaç her vidayı kayıt altına almak değil, şu üç soruya hızlı cevap verebilmek: Bu parçadan kaç tane var? Nerede duruyor? Ne zaman bitecek? Zimmetli değerli cihazlar (osiloskop, güç kaynağı) için ayrı bir resmi süreciniz zaten olabilir; burada sarf malzemeye ve küçük ekipmana odaklanıyoruz.</p>
+<h2>2. Önce sınıflandır</h2>
+<div class="tw"><table>
+<tr><th>Sınıf</th><th>Örnek</th><th>Takip şekli</th></tr>
+<tr><td>Sarf malzeme</td><td>direnç, LED, kablo, lehim</td><td>Adet ve minimum stok</td></tr>
+<tr><td>Modüller</td><td>Arduino, sensör, röle kartı</td><td>Adet, konum, not</td></tr>
+<tr><td>Küçük ekipman</td><td>multimetre, havya, pens</td><td>Adet, konum, durum notu</td></tr>
+<tr><td>Zimmetli cihaz</td><td>osiloskop, kaynak istasyonu</td><td>Resmi demirbaş kaydı</td></tr>
+</table></div>
+<h2>3. Konum düzeni</h2>
+<p>Dolapları ve çekmeceleri numaralandır; her parça türünün sabit bir yeri olsun. Kayıtta konum alanına "Dolap 2 › Çekmece B3" yazmak, yeni gelen öğrencinin ya da asistanın aramadan bulmasını sağlar. Etiket için barkod ya da QR kullanırsan okuttuğunda parçanın kaydı açılır.</p>
+<h2>4. Kim neyi aldı? Hafif bir kayıt yöntemi</h2>
+<p>Resmi zimmet yazışması yapmak istemesen bile bir iz bırakmak gerekir. Önerilen yöntem basit bir kural: "Aldığın parçayı not et, projeyi yaz." Stok yazılımında alınan adedi düşer, not alanına proje ya da kişi adını eklersin. LabStock'ta resmi bir ödünç/zimmet modülü yoktur; kayıt notları ve adet düzeltmeleriyle bu hafif yöntemi uygulayabilirsin. Resmi zimmet gerekiyorsa onu kurumunuzun kendi sürecinde yürütmeniz gerekir.</p>
+<h2>5. Ekip paylaşımı ve gözlemci davet kodu</h2>
+<p>Laboratuvarda birden fazla kişi stok bilgisine ihtiyaç duyar. LabStock'ta ekip paylaşımı vardır: sorumlu kişi stoğu yönetir, diğer kişileri gözlemci davet kodu ile ekler. Gözlemciler stoğu görür ama düzenlemez; böylece öğrenciler bir parçanın olup olmadığına bakabilir, kayıt yalnızca sorumlu kişilerce değişir. Laboratuvar yöneticisi, asistan ve proje sorumluları için bu ayrım pratiktir.</p>
+<h2>6. Düşük stok uyarısı ve dönem sonu</h2>
+<p>Dönem içinde en çok tükenen parçalar için minimum adet belirle; stok sınırın altına düşünce uyarı gelir ve siparişi son güne bırakmazsın. Dönem sonunda küçük bir sayım yap: çekmeceleri sırayla say, kayıtla karşılaştır, farkı düzelt. Masaüstü uygulamasında kamerayla sayma, küçük parçaları saymayı hızlandırır.</p>
+<h2>7. İnternet sorunu olan laboratuvarlar</h2>
+<p>Bazı laboratuvarlarda ağ erişimi kısıtlıdır. LabStock'un masaüstü uygulaması çevrimdışı çalışır; internet olmadan da stok kaydı tutabilirsin. Parça kodundan bilgi çekme gibi internet gerektiren özellikleri bağlantı varken kullanırsın. Ayrıntı için <a href="lcsc-parca-kodu-ile-stok.html">LCSC parça kodu rehberine</a> bak.</p>
+<h2>8. Kurulum kontrol listesi</h2>
+<ul>
+<li>Dolap ve çekmeceler numaralandı mı?</li>
+<li>Her parça türü için sabit konum belirlendi mi?</li>
+<li>Sorumlu kişiler ve gözlemciler belirlendi mi?</li>
+<li>En çok kullanılan 20 parça için minimum stok girildi mi?</li>
+<li>"Aldığını not et" kuralı laboratuvarda duyuruldu mu?</li>
+<li>Dönem sonu sayım tarihi takvimde mi?</li>
+</ul>
+<h2>Örnek: dönem başı kurulum</h2>
+<p>Laboratuvarda yaklaşık 300 kalem parça olduğunu varsayalım. Hepsini bir günde girmeye çalışma. Önce en çok kullanılan 30 kalemi gir ve minimum stok değerlerini ver. Sonraki haftalarda her ders ya da proje için kullanılan parçaları ekle. Bu yaklaşımla envanter, gerçek kullanıma göre kendiliğinden büyür ve ilk haftadan işe yarar.</p>
+<h2>Sık karşılaşılan sorunlar ve çözümleri</h2>
+<ul>
+<li><strong>"Kimse kayıt tutmuyor":</strong> Kuralı basit tut. Tek bir cümle: aldığın parçayı not et. Karmaşık formlar bırakılır; kısa kurallar sürdürülür.</li>
+<li><strong>Dağınık dolaplar:</strong> Dönem başında yarım saatlik bir düzenleme günü ayır, parçaları sabit konumlara yerleştir ve etiketle.</li>
+<li><strong>Öğrenci projelerinin parçaları karışıyor:</strong> Proje kutuları kullan; kutunun üstüne proje adı ve sorumlu yaz. Proje bitince kalan parçalar ortak stoğa geri döner.</li>
+<li><strong>Yönetici değişiyor:</strong> Kayıt tek yerde ve paylaşımlı olursa yeni sorumlu, defter ya da Excel dosyası aramadan devralır.</li>
+</ul>
+<h2>Ne zaman hangi araç?</h2>
+<p>Parça sayısı birkaç yüzden azsa ve tek kişi yönetiyorsa bir tablo da iş görür. Birden fazla kişi stoğa bakacaksa, düşük stok uyarısı istiyorsan ya da parçaların görselini ve datasheet'ini yanında görmek istiyorsan bir stok programı fark yaratır. LabStock hem tarayıcıda hem masaüstünde çalışır ve ticari kullanım dahil ücretsizdir.</p>
+<h2>Asistanlar ve öğrenciler için ipuçları</h2>
+<p>Laboratuvar asistanı için en değerli alışkanlık, her hafta sonu beş dakikalık bir kontroldür: en çok tükenen üç çekmeceye bak, adedi kayıtla karşılaştır, farkı düzelt. Öğrenciler için ise etiketli ve konumlu bir envanter, "şu direnç nerede?" sorusunu asistana sormadan cevaplamak demektir. Böylece laboratuvar saatleri parça aramakla değil, deney yapmakla geçer.</p>
+<h2>Özet</h2>
+<ul><li>Sarf, modül, küçük ekipman ve zimmetli cihazı ayır.</li><li>Sabit konumlar ve etiketler kullan.</li><li>Gözlemci davet koduyla stoğu paylaş, düzenleme yetkisini sınırlı tut.</li><li>Minimum stok ve dönem sonu sayımı ile sürprizleri azalt.</li></ul>
+<p>Genel düzen için <a href="elektronik-komponent-stok-takibi.html">komponent stok takibi rehberine</a>, yarışma ekipleri için <a href="teknofest-takim-malzeme-takibi.html">takım malzeme takibi</a> yazısına bakabilirsin.</p>
+<div class="cta"><strong>LabStock'u ücretsiz dene</strong><br>Windows, Linux ve tarayıcıda çalışır; ticari kullanım dahil ücretsiz.<br><a class="btn" href="https://app.labstock.com.tr/kayit">Tarayıcıda aç</a> &nbsp; <a href="../#indir">Masaüstü uygulamasını indir</a></div>
+</main>
+<footer><div class="sar"><a href="../">labstock.com.tr</a> · <a href="../rehber/elektronik-komponent-stok-takibi.html">Komponent stok takibi</a> · <a href="../rehber/arduino-malzeme-listesi-bom.html">Arduino BOM</a> · <a href="../rehber/lcsc-parca-kodu-ile-stok.html">LCSC parça kodu</a> · <a href="../rehber/universite-laboratuvar-envanter.html">Laboratuvar envanteri</a> · <a href="../rehber/teknofest-takim-malzeme-takibi.html">Takım malzeme takibi</a> · <a href="../guide/electronic-component-inventory.html">English guide</a></div></footer>
+</body>
+</html>

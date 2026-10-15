@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arduino projesi için malzeme listesi (BOM) nasıl hazırlanır? | LabStock</title>
+<meta name="description" content="Arduino ve hobi projeleri için malzeme listesi (BOM) hazırlama, elindeki stokla karşılaştırma ve eksikleri tek seferde sipariş etme rehberi.">
+<link rel="canonical" href="https://labstock.com.tr/rehber/arduino-malzeme-listesi-bom.html">
+<link rel="icon" type="image/svg+xml" href="../img/labstock-isaret.svg">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Arduino projesi için malzeme listesi (BOM) hazırlama ve stok kontrolü">
+<meta property="og:description" content="Arduino ve hobi projeleri için malzeme listesi (BOM) hazırlama, elindeki stokla karşılaştırma ve eksikleri tek seferde sipariş etme rehberi.">
+<meta property="og:url" content="https://labstock.com.tr/rehber/arduino-malzeme-listesi-bom.html">
+<meta property="og:image" content="https://labstock.com.tr/img/og.jpg">
+<script data-goatcounter="https://rcpuysl.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Arduino projesi için malzeme listesi (BOM) hazırlama ve stok kontrolü","description":"Arduino ve hobi projeleri için malzeme listesi (BOM) hazırlama, elindeki stokla karşılaştırma ve eksikleri tek seferde sipariş etme rehberi.","inLanguage":"tr","author":{"@type":"Person","name":"Recep Uysal"},"publisher":{"@type":"Organization","name":"LabStock","url":"https://labstock.com.tr/"},"datePublished":"2026-10-15","mainEntityOfPage":"https://labstock.com.tr/rehber/arduino-malzeme-listesi-bom.html"}</script>
+<style>
+
+  :root { --bg:#f2ede3; --surface:#fbf8f2; --line:#e4dccb; --ink:#1f1b16; --ink-2:#4a4238; --muted:#837a6b; --copper:#a3611f; color-scheme: light; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#17140f; --surface:#201c16; --line:rgba(242,237,227,.12); --ink:#f2ede3; --ink-2:#d8d0c2; --muted:#a99d8a; --copper:#c98544; color-scheme: dark; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:17px/1.7 'Segoe UI', system-ui, sans-serif; }
+  a { color: var(--copper); }
+  .sar { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+  header { border-bottom:1px solid var(--line); }
+  header .sar { display:flex; align-items:center; justify-content:space-between; height:56px; }
+  .logo { font-weight:600; color:var(--ink); text-decoration:none; }
+  .uye { background:var(--copper); color:#fff; padding:7px 13px; border-radius:8px; text-decoration:none; font-weight:600; font-size:14px; }
+  h1 { font-size: clamp(26px, 5vw, 36px); line-height:1.25; margin: 36px 0 10px; }
+  h2 { font-size: 21px; margin: 30px 0 6px; }
+  p, li { color: var(--ink-2); }
+  .cta { margin: 36px 0; padding: 20px; background: var(--surface); border:1px solid var(--line); border-radius: 12px; }
+  .cta a.btn { display:inline-block; margin-top:8px; background:var(--copper); color:#fff; padding:10px 16px; border-radius:9px; text-decoration:none; font-weight:600; }
+  footer { border-top:1px solid var(--line); padding: 20px 0 40px; font-size: 14px; color: var(--muted); }
+  table { width:100%; border-collapse:collapse; margin:14px 0; font-size:15px; }
+  th, td { text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); color:var(--ink-2); vertical-align:top; }
+  th { color:var(--ink); }
+  .tw { overflow-x:auto; }
+</style>
+</head>
+<body>
+<header><div class="sar"><a class="logo" href="../">LabStock</a><a class="uye" href="https://app.labstock.com.tr/kayit">Üye ol</a></div></header>
+<main class="sar">
+<h1>Arduino projesi için malzeme listesi (BOM) hazırlama ve stok kontrolü</h1>
+<p>Bir Arduino projesine başlamadan önce malzeme listesini (BOM, Bill of Materials) çıkarmak, yarım kalan projelerin ve gereksiz siparişlerin en iyi ilacıdır. Bu yazıda hobi projesi için listeyi nasıl hazırlayacağını, elindeki stokla nasıl karşılaştıracağını ve eksikleri tek seferde nasıl sipariş edeceğini adım adım anlatıyoruz.</p>
+<h2>1. BOM tam olarak nedir?</h2>
+<p>BOM, projeyi çalıştırmak için gereken her parçanın adet ve kod bilgisiyle yazıldığı listedir. Hobi projesinde bile "Arduino Nano, 1 adet; 10k direnç, 4 adet; 100 nF kondansatör, 2 adet" gibi bir liste, hem alışveriş hem de sonradan projeyi yeniden yapmak için çok işe yarar. Özellikle birkaç ay sonra aynı devreyi tekrar kurmak istediğinde hangi sensörü hangi modelle kullandığını hatırlamak zorunda kalmazsın.</p>
+<h2>2. Listeyi hazırlarken şu sütunları kullan</h2>
+<div class="tw"><table>
+<tr><th>Sütun</th><th>Örnek</th><th>Neden gerekli?</th></tr>
+<tr><td>Parça adı / kodu</td><td>LM358, C7950</td><td>Aynı parçayı yeniden bulabilmek için</td></tr>
+<tr><td>Değer ve kılıf</td><td>10k, 0805</td><td>Yanlış kılıf siparişini önler</td></tr>
+<tr><td>Proje için adet</td><td>4</td><td>Kaç tane gerektiğini gösterir</td></tr>
+<tr><td>Elindeki adet</td><td>120</td><td>Eksik hesabı için</td></tr>
+<tr><td>Not</td><td>5 V ile çalışır</td><td>Alternatif parça ya da uyarı</td></tr>
+</table></div>
+<h2>3. Yedek payı bırak</h2>
+<p>Küçük pasif parçalarda (direnç, kondansatör, LED) listedeki adedin biraz üstünü almak mantıklıdır; lehimleme sırasında bir iki parça kaybolabilir. Pahalı ya da tek adet gereken parçalarda (örneğin bir sensör modülü) yedek payı bırakmak çoğu zaman gereksizdir.</p>
+<h2>4. Elindeki stokla karşılaştır</h2>
+<p>Asıl zaman kazancı burada: listedeki her satır için "bende var mı?" sorusuna bakmak. Stok kaydı tek yerdeyse bu iş birkaç dakika sürer; çekmeceleri tek tek açmak yerine eksik olanları işaretlersin. Projeye ait parçaları ayrı bir proje listesi olarak tutarsan, proje bitince hangi parçaların harcandığını da görürsün.</p>
+<p>LabStock'ta proje ve BOM bölümü bunun için var: projeyi oluşturur, parçaları ve adetleri eklersin, elindeki stokla karşılaştırırsın. Parça LCSC kodlu ise bilgileri kendiliğinden gelir; bunun nasıl çalıştığını <a href="lcsc-parca-kodu-ile-stok.html">LCSC parça kodu rehberinde</a> anlattık.</p>
+<h2>5. Eksikleri tek seferde sipariş et</h2>
+<p>Her proje için ayrı ayrı sipariş vermek kargo ve zaman kaybıdır. Birkaç projenin eksiklerini bir araya getir, tek sepette sipariş ver. Sık kullandığın parçalar için minimum adet belirlersen (örneğin 10k direnç için 50 adet), stok bu sınırın altına düştüğünde düşük stok uyarısı alırsın ve bu parçalar zaten bir sonraki siparişin listesine girmiş olur.</p>
+<h2>6. Küçük bir kontrol listesi</h2>
+<ul>
+<li>Proje listesindeki her satırda parça kodu ya da net bir değer + kılıf var mı?</li>
+<li>Modüller için (sensör, ekran, röle kartı) kart üzerindeki çip ve voltaj notu yazılı mı?</li>
+<li>Bağlantı malzemeleri (jumper kablo, header, klemens, lehim) listeye girdi mi? Çoğu kişi bunları unutur.</li>
+<li>Güç kaynağı ve kablo gibi "sıkıcı" parçalar listede mi?</li>
+<li>Eksikler tek siparişte toplandı mı?</li>
+<li>Proje bittikten sonra kullanılan parçalar stoktan düşüldü mü?</li>
+</ul>
+<h2>7. Proje bittikten sonra</h2>
+<p>Kullanılmayan parçalar stokta kalır, kullanılanlar düşer. Bunu kayda geçirmezsen bir sonraki projede "bende vardı" diye bakıp bulamazsın. Projeye ait notları (kod sürümü, devre şeması bağlantısı, hangi modülün hangi pine bağlandığı) BOM ile birlikte sakla; ileride seni çok kurtarır.</p>
+<h2>Sık yapılan hatalar</h2>
+<ul>
+<li><strong>Listeyi alışveriş sırasında çıkarmak:</strong> Sepete bakarak liste yapınca "belki lazım olur" parçaları listeye sızar. Önce devre şemasından listeyi çıkar, sonra alışverişe başla.</li>
+<li><strong>Aynı parçaya farklı isim vermek:</strong> "10K", "10k direnç", "10 kOhm" gibi farklı yazımlar stok karşılaştırmasını bozar. Tek bir yazım biçimi seç ve ona bağlı kal.</li>
+<li><strong>Modülün çipini yazmamak:</strong> Aynı görünen iki sensör kartı farklı çipler taşıyabilir. Kodunuz ve kütüphaneniz çipe bağlıdır, kartın satış adına değil.</li>
+<li><strong>Alternatifi not etmemek:</strong> Bir parça stokta bitmişse yerine hangisinin kullanılabileceğini not alanına yaz.</li>
+</ul>
+<h2>Örnek: yağmur sensörlü sulama kontrolcüsü</h2>
+<p>Diyelim ki küçük bir bahçe sulama projesi yapıyorsun. BOM'a Arduino Nano, toprak nem sensörü, röle modülü, 12 V pompa, besleme adaptörü, birkaç direnç ve klemens girer. Elindeki stokla karşılaştırdığında Nano, dirençler ve klemensin zaten olduğunu, yalnızca sensör, röle ve pompanın eksik olduğunu görürsün. Üç parça için tek sipariş vermen yeter; "hepsini yeniden alayım" diyerek paranı boşa harcamazsın.</p>
+<h2>Listeyi paylaşmak</h2>
+<p>Projeyi arkadaşınla ya da takımınla yapıyorsan listeyi tek yerde tut. Ekip paylaşımında gözlemci davet koduyla eklediğin kişiler proje ve stok bilgisini görebilir; böylece "bu parça var mıydı?" sorusu herkesin telefonundan cevaplanır. Büyük takımlarda bu yaklaşımı <a href="teknofest-takim-malzeme-takibi.html">takım malzeme takibi</a> yazısında daha ayrıntılı anlattık.</p>
+<h2>Özet</h2>
+<ul><li>Projeye başlamadan BOM çıkar; parça kodu, değer, kılıf ve adet yaz.</li><li>Elindeki stokla karşılaştır, yalnızca gerçek eksikleri sipariş et.</li><li>Birkaç projenin eksiklerini tek sepette topla.</li><li>Bitince kullanılanları stoktan düş ve proje notlarını sakla.</li></ul>
+<p>Genel stok düzeni için <a href="elektronik-komponent-stok-takibi.html">komponent stok takibi rehberine</a> de göz atabilirsin.</p>
+<div class="cta"><strong>LabStock'u ücretsiz dene</strong><br>Windows, Linux ve tarayıcıda çalışır; ticari kullanım dahil ücretsiz.<br><a class="btn" href="https://app.labstock.com.tr/kayit">Tarayıcıda aç</a> &nbsp; <a href="../#indir">Masaüstü uygulamasını indir</a></div>
+</main>
+<footer><div class="sar"><a href="../">labstock.com.tr</a> · <a href="../rehber/elektronik-komponent-stok-takibi.html">Komponent stok takibi</a> · <a href="../rehber/arduino-malzeme-listesi-bom.html">Arduino BOM</a> · <a href="../rehber/lcsc-parca-kodu-ile-stok.html">LCSC parça kodu</a> · <a href="../rehber/universite-laboratuvar-envanter.html">Laboratuvar envanteri</a> · <a href="../rehber/teknofest-takim-malzeme-takibi.html">Takım malzeme takibi</a> · <a href="../guide/electronic-component-inventory.html">English guide</a></div></footer>
+</body>
+</html>

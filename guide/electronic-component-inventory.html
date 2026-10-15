@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free electronic component inventory software for makers | LabStock</title>
+<meta name="description" content="How to organize resistors, ICs and modules: locations, labels, BOM, low-stock alerts and a free inventory app for makers on Windows, Linux and the web.">
+<link rel="canonical" href="https://labstock.com.tr/guide/electronic-component-inventory.html">
+<link rel="icon" type="image/svg+xml" href="../img/labstock-isaret.svg">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Free electronic component inventory software for makers and hobbyists">
+<meta property="og:description" content="How to organize resistors, ICs and modules: locations, labels, BOM, low-stock alerts and a free inventory app for makers on Windows, Linux and the web.">
+<meta property="og:url" content="https://labstock.com.tr/guide/electronic-component-inventory.html">
+<meta property="og:image" content="https://labstock.com.tr/img/og.jpg">
+<script data-goatcounter="https://rcpuysl.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Free electronic component inventory software for makers and hobbyists","description":"How to organize resistors, ICs and modules: locations, labels, BOM, low-stock alerts and a free inventory app for makers on Windows, Linux and the web.","inLanguage":"en","author":{"@type":"Person","name":"Recep Uysal"},"publisher":{"@type":"Organization","name":"LabStock","url":"https://labstock.com.tr/"},"datePublished":"2026-10-15","mainEntityOfPage":"https://labstock.com.tr/guide/electronic-component-inventory.html"}</script>
+<style>
+
+  :root { --bg:#f2ede3; --surface:#fbf8f2; --line:#e4dccb; --ink:#1f1b16; --ink-2:#4a4238; --muted:#837a6b; --copper:#a3611f; color-scheme: light; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#17140f; --surface:#201c16; --line:rgba(242,237,227,.12); --ink:#f2ede3; --ink-2:#d8d0c2; --muted:#a99d8a; --copper:#c98544; color-scheme: dark; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:17px/1.7 'Segoe UI', system-ui, sans-serif; }
+  a { color: var(--copper); }
+  .sar { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+  header { border-bottom:1px solid var(--line); }
+  header .sar { display:flex; align-items:center; justify-content:space-between; height:56px; }
+  .logo { font-weight:600; color:var(--ink); text-decoration:none; }
+  .uye { background:var(--copper); color:#fff; padding:7px 13px; border-radius:8px; text-decoration:none; font-weight:600; font-size:14px; }
+  h1 { font-size: clamp(26px, 5vw, 36px); line-height:1.25; margin: 36px 0 10px; }
+  h2 { font-size: 21px; margin: 30px 0 6px; }
+  p, li { color: var(--ink-2); }
+  .cta { margin: 36px 0; padding: 20px; background: var(--surface); border:1px solid var(--line); border-radius: 12px; }
+  .cta a.btn { display:inline-block; margin-top:8px; background:var(--copper); color:#fff; padding:10px 16px; border-radius:9px; text-decoration:none; font-weight:600; }
+  footer { border-top:1px solid var(--line); padding: 20px 0 40px; font-size: 14px; color: var(--muted); }
+  table { width:100%; border-collapse:collapse; margin:14px 0; font-size:15px; }
+  th, td { text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); color:var(--ink-2); vertical-align:top; }
+  th { color:var(--ink); }
+  .tw { overflow-x:auto; }
+</style>
+</head>
+<body>
+<header><div class="sar"><a class="logo" href="../">LabStock</a><a class="uye" href="https://app.labstock.com.tr/kayit">Sign up</a></div></header>
+<main class="sar">
+<h1>Free electronic component inventory software for makers and hobbyists</h1>
+<p>If you build electronics as a hobby, you probably own more parts than you remember: resistors in three different boxes, a drawer of sensor modules, and a few ICs you bought "just in case". This guide covers how to organize them, and how to do it for free with <a href="../">LabStock</a>, a free electronic component inventory app.</p>
+<h2>1. Why track components at all?</h2>
+<p>The two classic mistakes are re-ordering parts you already own and starting a project only to find a key part is missing. A simple inventory fixes both: you check the list before buying, and you see what to order for the next project in one place.</p>
+<h2>2. Give every part an address</h2>
+<p>Use a location path such as <strong>room › cabinet › drawer › compartment</strong> (for example "Shelf 2 › Drawer B3"). Keep similar parts together: resistors sorted by value, capacitors by type, ICs by package. A part without an address will eventually get lost.</p>
+<h2>3. What to record</h2>
+<div class="tw"><table>
+<tr><th>Field</th><th>Example</th><th>Why</th></tr>
+<tr><td>Part number / LCSC code</td><td>C25804</td><td>Find it again, reorder it</td></tr>
+<tr><td>Value and package</td><td>10k, 0603</td><td>Avoid wrong-package orders</td></tr>
+<tr><td>Quantity</td><td>250</td><td>Know what you have</td></tr>
+<tr><td>Minimum quantity</td><td>50</td><td>Low-stock alerts</td></tr>
+<tr><td>Location</td><td>Shelf 2 › B3</td><td>Find it quickly</td></tr>
+</table></div>
+<h2>4. Fill in details automatically</h2>
+<p>If you buy from LCSC, you can type the part code (like C25804) and LabStock fills in the part image, datasheet link and specifications for you. You then only add quantity and location. For parts from other suppliers you enter the details by hand.</p>
+<h2>5. Labels with QR codes or barcodes</h2>
+<p>Print a barcode or QR label for each box. Scanning it opens the part record directly, which is faster than searching, and it pays off once you have a few hundred parts.</p>
+<h2>6. Plan projects with a BOM</h2>
+<p>Create a project in LabStock, add the parts and quantities (the bill of materials), and compare it with what you already have. You only order what is actually missing. Combine the shortages of several projects into one order to save on shipping.</p>
+<h2>7. Low-stock alerts</h2>
+<p>Set a minimum quantity for parts you use often. When stock drops below that number, LabStock raises a low-stock alert so you reorder before you run out.</p>
+<h2>8. Counting small parts with the camera</h2>
+<p>In the desktop app you can spread parts on the table, count them with the camera, and write the result to the record. It is a good way to do a quick monthly check without counting hundreds of tiny parts by hand.</p>
+<h2>9. Share with a team or a makerspace</h2>
+<p>If you share a workspace, LabStock supports team sharing: other people can join with an observer invite code and view the stock without being able to change it.</p>
+<h2>10. Desktop, browser or offline?</h2>
+<ul>
+<li><strong>Browser:</strong> nothing to install; sign up and start at app.labstock.com.tr.</li>
+<li><strong>Desktop (Windows / Linux):</strong> works offline and adds camera counting.</li>
+<li>The interface is available in Turkish and English.</li>
+</ul>
+<h2>Common mistakes to avoid</h2>
+<ul>
+<li><strong>Trying to catalog everything on day one.</strong> Start with the parts you use most. The inventory grows naturally as you start new projects.</li>
+<li><strong>Inconsistent naming.</strong> "10K", "10k resistor" and "10 kOhm" are the same part; pick one style so searching and comparing stay reliable.</li>
+<li><strong>Forgetting modules' chips.</strong> Two sensor boards that look identical can use different chips. Note the chip and voltage in the notes field.</li>
+<li><strong>Never updating the count.</strong> When you use parts, change the quantity right away, or the record stops being useful.</li>
+</ul>
+<h2>Spreadsheet or inventory app?</h2>
+<p>A spreadsheet is fine to start with: columns for part number, value, package, location, quantity and minimum. It starts to hurt when the list passes a few hundred rows, when several people need to edit it, or when you want automatic low-stock alerts, images and datasheets next to each part. Open-source tools such as InvenTree and Part-DB are good options if you are comfortable hosting your own server; LabStock is the option that needs no server, since you can use it in the browser or install the desktop app.</p>
+<h2>Example: a weekend sensor project</h2>
+<p>Say you plan a small weather station. Your BOM lists a microcontroller board, a temperature and humidity sensor, a small display, a few resistors and a battery holder. Compared with your stock, you find that only the sensor and display are missing. You order those two parts together with the shortages from your next project, and you do not pay for another box of resistors you already own.</p>
+<h2>Quick start checklist</h2>
+<ul><li>Number your drawers and boxes.</li><li>Add your most-used 30 parts first, not everything.</li><li>Set minimum quantities for those parts.</li><li>Print labels for the boxes.</li><li>Create a BOM for your next project and compare it to stock.</li></ul>
+<p>Prefer Turkish? Read the <a href="../rehber/elektronik-komponent-stok-takibi.html">component inventory guide</a> or learn about <a href="../rehber/lcsc-parca-kodu-ile-stok.html">LCSC part codes</a> (both in Turkish).</p>
+<div class="cta"><strong>Try LabStock for free</strong><br>Runs on Windows, Linux and in the browser; free, including commercial use.<br><a class="btn" href="https://app.labstock.com.tr/kayit">Open in browser</a> &nbsp; <a href="../#indir">Download the desktop app</a></div>
+</main>
+<footer><div class="sar"><a href="../">labstock.com.tr</a> · <a href="../rehber/elektronik-komponent-stok-takibi.html">Komponent stok takibi (TR)</a> · <a href="../rehber/arduino-malzeme-listesi-bom.html">Arduino BOM (TR)</a> · <a href="../rehber/lcsc-parca-kodu-ile-stok.html">LCSC parça kodu (TR)</a> · <a href="../rehber/universite-laboratuvar-envanter.html">Laboratuvar envanteri (TR)</a></div></footer>
+</body>
+</html>
