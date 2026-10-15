@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="tr" data-dil="tr">
 <head>
+<script>
+  // labstock.com.tr/#ben: bu tarayıcıdaki ziyaret ve tıklamalar sayılmaz (site sahibi)
+  try { if (location.hash === '#ben') { localStorage.setItem('labstock-ben', '1'); localStorage.setItem('skipgc', 't'); } } catch (e) {}
+</script>
 <script data-goatcounter="https://rcpuysl.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 <meta charset="utf-8">
@@ -524,6 +528,9 @@
   (function () {
     var URL_ = 'https://czgraotkmmpqhzdniijc.supabase.co/rest/v1/rpc/site_indirme';
     var ANAHTAR = 'sb_publishable_GV5VIFC2oJs7gOwCPgr_4A_uaLfsE1e';
+    var ben = false;
+    try { ben = localStorage.getItem('labstock-ben') === '1'; } catch (e) {}
+    if (ben) return;
     document.querySelectorAll('[data-indir]').forEach(function (a) {
       a.addEventListener('click', function () {
         try {
