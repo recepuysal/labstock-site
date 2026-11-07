@@ -53,6 +53,10 @@
   img, video { max-width: 100%; height: auto; display: block; }
   a { color: var(--copper); }
   .sar { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+  .sponsor { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; border-style: dashed; }
+  .sponsor > div { flex: 1 1 420px; }
+  .sponsor h3 { margin: 6px 0 8px; }
+  .sponsor p { margin: 0; }
 
   /* dil: yalnızca seçili dildeki metinler görünür */
   html[data-dil="tr"] [lang="en"], html[data-dil="en"] [lang="tr"] { display: none !important; }
@@ -101,7 +105,7 @@
   /* bölümler */
   section { padding: 56px 0; }
   .baslik { max-width: 640px; margin-bottom: 32px; }
-  .baslik .ust { font: 500 12px var(--mono); letter-spacing: 1.5px; text-transform: uppercase; color: var(--copper); }
+  .baslik .ust, .sponsor .ust { font: 500 12px var(--mono); letter-spacing: 1.5px; text-transform: uppercase; color: var(--copper); }
   h2 { font-size: clamp(26px, 3.4vw, 36px); letter-spacing: -.8px; line-height: 1.15; margin: 8px 0 12px; }
   .baslik p { color: var(--ink-2); margin: 0; }
 
@@ -187,7 +191,7 @@
      "name": "Gerçekten ücretsiz mi?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Evet, kişisel ve ticari kullanım dahil. Kaynak kodu GitHub'da görülebilir; açık kaynak lisansı değildir."
+      "text": "Kişisel ve eğitim kullanımı ücretsiz ve öyle kalacak. Ticari kullanım da şimdilik ücretsiz; ileride şirketler için ücretli bir plan gelecek ve önceden duyurulacak. Kaynak kodu GitHub'da görülebilir; açık kaynak lisansı değildir."
      }
     },
     {
@@ -402,7 +406,7 @@
     <div class="sar">
       <div class="baslik">
         <div class="ust"><span lang="tr">İndir</span><span lang="en">Download</span></div>
-        <h2><span lang="tr">Ücretsiz, ticari kullanım dahil</span><span lang="en">Free, including commercial use</span></h2>
+        <h2><span lang="tr">Kişisel ve eğitim kullanımı ücretsiz</span><span lang="en">Free for personal and educational use</span></h2>
         <p><span lang="tr">Kurulum dosyaları GitHub Releases'ten iner. Uygulama yeni sürümü kendisi bulur ve günceller.</span><span lang="en">Installers are downloaded from GitHub Releases. The app finds and installs new versions by itself.</span></p>
       </div>
       <div class="platformlar">
@@ -436,6 +440,19 @@
     </div>
   </section>
 
+  <section id="sponsor">
+    <div class="sar">
+      <div class="kart sponsor">
+        <div>
+          <div class="ust"><span lang="tr">Sponsorluk</span><span lang="en">Sponsorship</span></div>
+          <h3><span lang="tr">Markan elektronikçilerin önünde olsun</span><span lang="en">Put your brand in front of electronics makers</span></h3>
+          <p><span lang="tr">LabStock'u öğrenciler, Teknofest takımları, üniversite laboratuvarları ve Ar-Ge ekipleri parça stoğu için kullanıyor. Komponent satıcıları, PCB üreticileri ve elektronik markaları için bu alan ayda bir sponsora ayrılıyor.</span><span lang="en">Students, competition teams, university labs and R&amp;D teams use LabStock to track their parts. This spot is reserved for one sponsor a month: component distributors, PCB makers and electronics brands.</span></p>
+        </div>
+        <a class="btn ana" href="mailto:labstockassistant@gmail.com?subject=LabStock%20sponsorluk"><span lang="tr">Sponsor ol</span><span lang="en">Become a sponsor</span></a>
+      </div>
+    </div>
+  </section>
+
   <section>
     <div class="sar">
       <div class="baslik">
@@ -444,7 +461,7 @@
       </div>
       <details>
         <summary><span lang="tr">Gerçekten ücretsiz mi?</span><span lang="en">Is it really free?</span></summary>
-        <p><span lang="tr">Evet, kişisel ve ticari kullanım dahil. Kaynak kodu GitHub'da görülebilir; açık kaynak lisansı değildir.</span><span lang="en">Yes, for personal and commercial use. The source code is visible on GitHub; it isn't under an open-source license.</span></p>
+        <p><span lang="tr">Kişisel ve eğitim kullanımı ücretsiz ve öyle kalacak. Ticari kullanım da şimdilik ücretsiz; ileride şirketler için ücretli bir plan gelecek ve önceden duyurulacak. Kaynak kodu GitHub'da görülebilir; açık kaynak lisansı değildir.</span><span lang="en">Personal and educational use is free and will stay free. Commercial use is free for now too; a paid plan for companies will come later and will be announced in advance. The source code is visible on GitHub; it isn't under an open-source license.</span></p>
       </details>
       <details>
         <summary><span lang="tr">Verilerim nerede duruyor?</span><span lang="en">Where is my data stored?</span></summary>
@@ -472,6 +489,7 @@
     <a href="https://github.com/recepuysal/labstock">GitHub</a>
     <a href="https://github.com/recepuysal/labstock/releases"><span lang="tr">Sürümler</span><span lang="en">Releases</span></a>
     <a href="https://github.com/recepuysal/labstock/issues"><span lang="tr">Geri bildirim</span><span lang="en">Feedback</span></a>
+    <a href="#sponsor"><span lang="tr">Sponsorluk</span><span lang="en">Sponsorship</span></a>
     <a href="rehber/elektronik-komponent-stok-takibi.html"><span lang="tr">Stok takibi rehberi</span><span lang="en">Inventory guide (TR)</span></a>
     <a href="rehber/teknofest-takim-malzeme-takibi.html"><span lang="tr">Takımlar için</span><span lang="en">For teams (TR)</span></a>
     <a href="rehber/arduino-malzeme-listesi-bom.html"><span lang="tr">Arduino malzeme listesi</span><span lang="en">Arduino BOM (TR)</span></a>
