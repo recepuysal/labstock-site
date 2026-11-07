@@ -10,7 +10,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LabStock — ücretsiz elektronik komponent stok takip programı</title>
-<meta name="description" content="Elektronik komponentler için ücretsiz stok programı: QR etiketli kutular, LCSC'den otomatik bilgi, telefon kamerasıyla parça sayma. Windows ve Linux.">
+<meta name="description" content="Elektronik komponentler için ücretsiz stok programı: QR etiketli kutular, LCSC'den otomatik bilgi, telefon kamerasıyla parça sayma. Windows, Linux ve tarayıcıda.">
 <link rel="canonical" href="https://labstock.com.tr/">
 <link rel="icon" type="image/svg+xml" href="img/labstock-isaret.svg">
 <link rel="icon" type="image/png" href="img/isaret-256.png">
@@ -167,7 +167,7 @@
     "price": "0",
     "priceCurrency": "TRY"
    },
-   "description": "Elektronik komponentler için ücretsiz stok takip programı: QR etiketli kutu ve çekmeceler, LCSC linkinden otomatik parça bilgisi, telefon kamerasıyla parça sayma, alınacaklar listesi, çevrimdışı mod.",
+   "description": "Elektronik komponentler için ücretsiz stok takip programı: QR etiketli kutu ve çekmeceler, LCSC linkinden otomatik parça bilgisi, telefon kamerasıyla parça sayma, alınacaklar listesi, tarayıcıdan da çalışan web sürümü.",
    "image": "https://labstock.com.tr/img/og.jpg",
    "downloadUrl": "https://github.com/recepuysal/labstock/releases/latest",
    "softwareHelp": "https://github.com/recepuysal/labstock",
@@ -195,7 +195,7 @@
      "name": "Verilerim nerede duruyor?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Varsayılan olarak hesabına bağlı olarak Supabase'de (bulut) tutulur, böylece birden fazla bilgisayarda aynı envanteri görürsün. Ayarlar'dan çevrimdışı moda geçersen veriler yalnızca bilgisayarındaki bir SQLite dosyasında kalır."
+      "text": "Varsayılan olarak hesabına bağlı olarak Supabase'de (bulut) tutulur, böylece birden fazla bilgisayarda aynı envanteri görürsün. Aynı hesapla tarayıcıdan da (app.labstock.com.tr) girebilirsin."
      }
     },
     {
@@ -256,14 +256,14 @@
   <div class="giris">
     <div class="sar">
       <div>
-        <span class="rozet"><span lang="tr">Ücretsiz · Windows ve Linux</span><span lang="en">Free · Windows & Linux</span></span>
+        <span class="rozet"><span lang="tr">Ücretsiz · Windows, Linux ve Web</span><span lang="en">Free · Windows, Linux & Web</span></span>
         <h1>
           <span lang="tr">Elektronik parçaların <em>nerede, kaç tane</em> olduğunu bil.</span>
           <span lang="en">Know <em>where</em> your parts are, and <em>how many</em> you have.</span>
         </h1>
         <p class="alt">
-          <span lang="tr">LabStock; direnç, entegre ve modüllerin için masaüstü stok programı. Kutuları QR etiketle, LCSC linkinden bilgileri çek, masadaki parçaları telefon kamerasıyla say.</span>
-          <span lang="en">LabStock is a desktop inventory app for resistors, ICs and modules. Label your boxes with QR codes, pull part data from an LCSC link, and count parts on your desk with your phone camera.</span>
+          <span lang="tr">LabStock; direnç, entegre ve modüllerin için stok programı. Kutuları QR etiketle, LCSC linkinden bilgileri çek, masadaki parçaları telefon kamerasıyla say.</span>
+          <span lang="en">LabStock is an inventory app for resistors, ICs and modules. Label your boxes with QR codes, pull part data from an LCSC link, and count parts on your desk with your phone camera.</span>
         </p>
         <div class="indir">
           <a class="btn ana" data-indir="windows" href="https://github.com/recepuysal/labstock/releases/latest/download/LabStock-Kurulum.exe">
@@ -280,8 +280,8 @@
           </a>
         </div>
         <p class="not">
-          <span lang="tr">Türkçe ve İngilizce arayüz · Uygulama içinden otomatik güncelleme</span>
-          <span lang="en">English and Turkish interface · Automatic in-app updates</span>
+          <span lang="tr">Türkçe ve İngilizce arayüz · Otomatik güncelleme · E-posta ya da GitHub ile giriş</span>
+          <span lang="en">English and Turkish interface · Automatic updates · Sign in with email or GitHub</span>
         </p>
       </div>
       <video data-dil-video autoplay muted loop playsinline preload="metadata"
@@ -340,8 +340,8 @@
         </div>
         <div class="kart">
           <div class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div>
-          <h3><span lang="tr">Bulut ya da çevrimdışı</span><span lang="en">Cloud or offline</span></h3>
-          <p><span lang="tr">Varsayılan olarak hesabınla senkron. İstersen veriler yalnızca bilgisayarındaki dosyada kalır, hesap da gerekmez.</span><span lang="en">Synced to your account by default. Or keep everything in a local file on your computer, no account needed.</span></p>
+          <h3><span lang="tr">Her yerden aynı stok</span><span lang="en">Same stock everywhere</span></h3>
+          <p><span lang="tr">Veriler hesabınla senkron: laboratuvardaki bilgisayar, evdeki laptop ya da tarayıcı, hepsinde aynı envanter.</span><span lang="en">Your data syncs with your account: the lab PC, your laptop at home or a browser all show the same inventory.</span></p>
         </div>
       </div>
     </div>
@@ -415,7 +415,7 @@
               <span>LabStock-Kurulum.exe</span>
             </a>
           </div>
-          <p class="not"><span lang="tr">Kurulum dosyası henüz imzalı olmadığı için SmartScreen uyarısı çıkabilir: <b>Ek bilgi → Yine de çalıştır</b>. Microsoft Store sürümü onay aşamasında.</span><span lang="en">The installer isn't code-signed yet, so SmartScreen may warn you: <b>More info → Run anyway</b>. A Microsoft Store version is in review.</span></p>
+          <p class="not"><span lang="tr">Kurulum dosyası henüz imzalı olmadığı için SmartScreen uyarısı çıkabilir: <b>Ek bilgi → Yine de çalıştır</b>.</span><span lang="en">The installer isn't code-signed yet, so SmartScreen may warn you: <b>More info → Run anyway</b>.</span></p>
         </div>
         <div class="kart platform">
           <h3>Linux</h3>
@@ -448,7 +448,7 @@
       </details>
       <details>
         <summary><span lang="tr">Verilerim nerede duruyor?</span><span lang="en">Where is my data stored?</span></summary>
-        <p><span lang="tr">Varsayılan olarak hesabına bağlı olarak Supabase'de (bulut) tutulur, böylece birden fazla bilgisayarda aynı envanteri görürsün. Ayarlar'dan çevrimdışı moda geçersen veriler yalnızca bilgisayarındaki bir SQLite dosyasında kalır.</span><span lang="en">By default it's stored in the cloud (Supabase) under your account, so the same inventory works on several computers. Switch to offline mode in Settings and everything stays in a SQLite file on your computer.</span></p>
+        <p><span lang="tr">Varsayılan olarak hesabına bağlı olarak Supabase'de (bulut) tutulur, böylece birden fazla bilgisayarda aynı envanteri görürsün. Aynı hesapla tarayıcıdan da (<a href="https://app.labstock.com.tr">app.labstock.com.tr</a>) girebilirsin.</span><span lang="en">By default it's stored in the cloud (Supabase) under your account, so the same inventory works on several computers. You can also sign in from a browser at <a href="https://app.labstock.com.tr">app.labstock.com.tr</a>.</span></p>
       </details>
       <details>
         <summary><span lang="tr">Telefon kamerası için uygulama gerekiyor mu?</span><span lang="en">Do I need an app on my phone?</span></summary>
